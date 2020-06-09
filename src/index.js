@@ -4,15 +4,10 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
-import Navbar from "./components/navbar";
-import Post from "./components/post";
-import Feed from "./components/feed";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Navbar />
-    <Post />
-    <Feed />
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );

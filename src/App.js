@@ -1,29 +1,20 @@
-// import React from 'react';
-// import logo from './logo.svg';
-// import './App.css';
-// // import Navbar from "./components/navbar";
-// // import Post from "./components/post";
-// // import Feed from "./components/feed";
-//
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           <h1>Hello guys!</h1>
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-//
-// export default App;
+import React, { Component } from "react";
+import Navbar from "./components/navbar";
+import Feed from "./components/feed";
+import SignUp from "./components/signUp";
+import "./App.css";
+
+class App extends Component {
+  state = { isLoggedIn: true };
+  render() {
+    return (
+      <div className="homepage">
+        <Navbar isLoggedIn={this.state.isLoggedIn} />
+        <Feed />
+        <SignUp />
+      </div>
+    );
+  }
+}
+
+export default App;

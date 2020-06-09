@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class Navbar extends Component {
   state = {
-    isLoggedIn: false,
+    isLoggedIn: this.props.isLoggedIn,
 
     isOpen: false,
 
