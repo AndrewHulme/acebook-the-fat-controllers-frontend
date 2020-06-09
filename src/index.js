@@ -5,10 +5,12 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./components/navbar";
+import Post from "./components/post";
 
 ReactDOM.render(
   <React.StrictMode>
     <Navbar />
+    <Post />
   </React.StrictMode>,
   document.getElementById("root")
 );
