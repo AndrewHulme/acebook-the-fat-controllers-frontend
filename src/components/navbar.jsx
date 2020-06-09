@@ -2,43 +2,77 @@ import React, { Component } from "react";
 
 class Navbar extends Component {
   state = {
-    isLoggedIn: true,
+    isLoggedIn: false,
+
+    isOpen: false,
+
     whenLoggedOut: [
       { name: "Login", link: "loginlink" },
       { name: "Sign Up", link: "signUpLink" },
     ],
+
     whenLoggedIn: [
       { name: "My Profile", link: "myProfileLink" },
       { name: "Log Out", link: "logOutLink" },
     ],
   };
 
-  createButtons = () => {
+  toggleCollapse = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  };
+
+  createMenuItem(name, link) {
+    return (
+      <li className="nav-item" key={name}>
+        <a className="nav-link" href={link}>
+          {name}
+        </a>
+      </li>
+    );
+  }
+
+  createMenu = () => {
     if (this.state.isLoggedIn === true) {
-      return this.state.whenLoggedIn.map((button) =>
-        this.newButton(button.name, button.link)
+      return this.state.whenLoggedIn.map((item) =>
+        this.createMenuItem(item.name, item.link)
       );
     } else {
-      return this.state.whenLoggedOut.map((button) =>
-        this.newButton(button.name, button.link)
+      return this.state.whenLoggedOut.map((item) =>
+        this.createMenuItem(item.name, item.link)
       );
     }
   };
 
-  newButton(name, link) {
-    return (
-      <button className="button" href={link} key={name}>
-        {name}
-      </button>
-    );
-  }
-
   render() {
     return (
-      <div className="container">
-        <h1 className="title">Acebook</h1>
-        <nav className="navbar">{this.createButtons()}</nav>
-      </div>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary static-top">
+        <div className="container">
+          <a className="navbar-brand" href="/">
+            Acebook
+            <small> - courtesy of the Fat Controllers</small>
+          </a>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+            onClick={this.toggleCollapse}
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div
+            className={
+              (this.state.isOpen ? "" : "collapse ") + "navbar-collapse"
+            }
+            id="navbarResponsive"
+          >
+            <ul className="navbar-nav ml-auto">{this.createMenu()}</ul>
+          </div>
+        </div>
+      </nav>
     );
   }
 }
