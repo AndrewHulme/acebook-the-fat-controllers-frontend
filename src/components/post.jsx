@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class Post extends Component {
-  state = { message: "My first post" };
+  state = { message: this.props.message };
   render() {
     return (
       <div className="postbox">

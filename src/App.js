@@ -1,7 +1,10 @@
 // import React from 'react';
 // import logo from './logo.svg';
 // import './App.css';
-
+// // import Navbar from "./components/navbar";
+// // import Post from "./components/post";
+// // import Feed from "./components/feed";
+//
 // function App() {
 //   return (
 //     <div className="App">
@@ -22,5 +25,5 @@
 //     </div>
 //   );
 // }
-
+//
 // export default App;

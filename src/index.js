@@ -6,11 +6,13 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
 import Navbar from "./components/navbar";
 import Post from "./components/post";
+import Feed from "./components/feed";
 
 ReactDOM.render(
   <React.StrictMode>
     <Navbar />
     <Post />
+    <Feed />
   </React.StrictMode>,
   document.getElementById("root")
 );
