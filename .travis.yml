@@ -7,8 +7,8 @@ node_js:
 - "node"
 
 install:
-- gem uninstall bundler
-- gem install bundler --version '1.7.4'
+# - gem uninstall bundler
+# - gem install bundler --version '1.7.4'
 - bundle install
 - nvm install 14.2
 
