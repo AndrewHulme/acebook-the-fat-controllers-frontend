@@ -39,6 +39,8 @@ class SignUp extends Component {
       }
     } else {
       this.props.toggleSignUp(false);
+      this.props.toggleLogin(true);
+      this.props.toggleFeed(false);
     }
   }
 

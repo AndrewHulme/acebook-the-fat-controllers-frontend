@@ -7,15 +7,22 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    isLoggedIn: null,
-    showSignUp: true,
-    showLogin: true,
+    isLoggedIn: localStorage.getItem("token"),
+    showLogin: false,
+    showSignUp: false,
+    showLogin: false,
     showFeed: true,
   };
 
   loginHandler = () => {
     this.setState({
       isLoggedIn: localStorage.getItem("token"),
+    });
+  };
+
+  clearLoginData = () => {
+    this.setState({
+      isLoggedIn: null,
     });
   };
 
@@ -47,6 +54,7 @@ class App extends Component {
           toggleSignUp={this.toggleSignUp}
           toggleLogin={this.toggleLogin}
           toggleFeed={this.toggleFeed}
+          clearLoginData={this.clearLoginData}
         />
 
         {showFeed && (
@@ -57,12 +65,14 @@ class App extends Component {
           />
         )}
 
-        <Login
-          loginNav={this.loginHandler}
-          toggleSignUp={this.toggleSignUp}
-          toggleLogin={this.toggleLogin}
-          toggleFeed={this.toggleFeed}
-        />
+        {showLogin && (
+          <Login
+            loginNav={this.loginHandler}
+            toggleSignUp={this.toggleSignUp}
+            toggleLogin={this.toggleLogin}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
 
         {showSignUp && (
           <SignUp

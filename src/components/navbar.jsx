@@ -3,42 +3,43 @@ import React, { Component } from "react";
 class Navbar extends Component {
   state = {
     isLoggedIn: this.props.isLoggedIn,
-
     isOpen: false,
-
-    whenLoggedOut: [
-      { name: "Login", link: "loginlink" },
-      { name: "Sign Up", link: "signUpLink" },
-    ],
-
-    whenLoggedIn: [
-      { name: "My Profile", link: "myProfileLink" },
-      { name: "Log Out", link: "logOutLink" },
-    ],
   };
 
   toggleCollapse = () => {
     this.setState({ isOpen: !this.state.isOpen });
   };
 
-  createMenuItem(name, link) {
-    return (
-      <li className="nav-item" key={name}>
-        <a className="nav-link" href={link}>
-          {name}
-        </a>
-      </li>
-    );
-  }
-
   createMenu = () => {
-    if (this.state.isLoggedIn !== null) {
-      return this.state.whenLoggedIn.map((item) =>
-        this.createMenuItem(item.name, item.link)
+    if (this.state.isLoggedIn === null) {
+      return (
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item" key="login">
+            <a className="nav-link" href="#" onClick={this.clickLogin}>
+              Login
+            </a>
+          </li>
+          <li className="nav-item" key="signup">
+            <a className="nav-link" href="#" onClick={this.clickSignUp}>
+              Signup
+            </a>
+          </li>
+        </ul>
       );
     } else {
-      return this.state.whenLoggedOut.map((item) =>
-        this.createMenuItem(item.name, item.link)
+      return (
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item" key="My Profile">
+            <a className="nav-link" href="#">
+              My Profile
+            </a>
+          </li>
+          <li className="nav-item" key="logout">
+            <a className="nav-link" href="#" onClick={this.clickSignout}>
+              Sign Out
+            </a>
+          </li>
+        </ul>
       );
     }
   };
@@ -49,9 +50,28 @@ class Navbar extends Component {
         isLoggedIn: props.isLoggedIn,
       };
     }
-
     return null;
   }
+
+  clickSignUp = () => {
+    this.props.toggleSignUp(true);
+    this.props.toggleLogin(false);
+    this.props.toggleFeed(false);
+  };
+
+  clickLogin = () => {
+    this.props.toggleLogin(true);
+    this.props.toggleSignUp(false);
+    this.props.toggleFeed(false);
+  };
+
+  clickSignout = () => {
+    this.props.toggleLogin(false);
+    this.props.toggleSignUp(false);
+    this.props.toggleFeed(true);
+    localStorage.clear();
+    this.props.clearLoginData();
+  };
 
   render() {
     return (
@@ -79,7 +99,7 @@ class Navbar extends Component {
             }
             id="navbarResponsive"
           >
-            <ul className="navbar-nav ml-auto">{this.createMenu()}</ul>
+            {this.createMenu()}
           </div>
         </div>
       </nav>

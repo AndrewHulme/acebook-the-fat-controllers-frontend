@@ -14,7 +14,6 @@ class Login extends Component {
   };
 
   handleSubmit = (event) => {
-    console.log(this.state.email);
     //Insert API request here
     event.preventDefault();
   };
@@ -35,12 +34,16 @@ class Login extends Component {
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
-        console.log(data);
-        this.props.loginNav();
+
+        if (data.hasOwnProperty("error")) {
+          alert("Login failed - Invalid details.");
+        } else {
+          this.props.loginNav();
+          this.props.toggleLogin(false);
+          this.props.toggleSignUp(false);
+          this.props.toggleFeed(true);
+        }
       });
-    // evt.target.email = ""
-    // this.state.email = ""
-    // this.state.password = ""
   };
 
   render() {
