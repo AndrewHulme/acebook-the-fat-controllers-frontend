@@ -7,7 +7,7 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    isLoggedIn: null,
+    isLoggedIn: localStorage.getItem("token"),
     showLogin: false,
     showSignUp: false,
     showLogin: false,

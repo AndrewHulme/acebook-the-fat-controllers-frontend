@@ -15,12 +15,12 @@ class Navbar extends Component {
       return (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item" key="login">
-            <a className="nav-link" onClick={this.clickLogin}>
+            <a className="nav-link" href="#" onClick={this.clickLogin}>
               Login
             </a>
           </li>
           <li className="nav-item" key="signup">
-            <a className="nav-link" onClick={this.clickSignUp}>
+            <a className="nav-link" href="#" onClick={this.clickSignUp}>
               Signup
             </a>
           </li>
@@ -30,10 +30,12 @@ class Navbar extends Component {
       return (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item" key="My Profile">
-            <a className="nav-link">My Profile</a>
+            <a className="nav-link" href="#">
+              My Profile
+            </a>
           </li>
           <li className="nav-item" key="logout">
-            <a className="nav-link" onClick={this.clickSignout}>
+            <a className="nav-link" href="#" onClick={this.clickSignout}>
               Sign Out
             </a>
           </li>
@@ -48,7 +50,6 @@ class Navbar extends Component {
         isLoggedIn: props.isLoggedIn,
       };
     }
-
     return null;
   }
 

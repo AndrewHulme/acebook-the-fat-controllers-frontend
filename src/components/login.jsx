@@ -34,10 +34,15 @@ class Login extends Component {
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
-        this.props.loginNav();
-        this.props.toggleLogin(false);
-        this.props.toggleSignUp(false);
-        this.props.toggleFeed(true);
+
+        if (data.hasOwnProperty("error")) {
+          alert("Login failed - Invalid details.");
+        } else {
+          this.props.loginNav();
+          this.props.toggleLogin(false);
+          this.props.toggleSignUp(false);
+          this.props.toggleFeed(true);
+        }
       });
   };
 
