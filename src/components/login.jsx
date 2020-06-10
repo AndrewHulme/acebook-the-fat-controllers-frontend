@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "./navbar";
 
 class Login extends Component {
   constructor(props) {
@@ -11,7 +10,7 @@ class Login extends Component {
   }
 
   handleChange = (event) => {
-    this.state[event.target.name] = event.target.value;
+    this.setState({ [event.target.name]: event.target.value });
   };
 
   handleSubmit = (event) => {
@@ -37,7 +36,7 @@ class Login extends Component {
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
         console.log(data);
-        //createMenu();
+        this.props.loginNav();
       });
     // evt.target.email = ""
     // this.state.email = ""

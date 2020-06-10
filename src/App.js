@@ -6,7 +6,13 @@ import Login from "./components/login";
 import "./App.css";
 
 class App extends Component {
-  state = { isLoggedIn: localStorage.getItem("token") };
+  state = { isLoggedIn: null };
+
+  loginHandler() {
+    this.setState({
+      isLoggedIn: localStorage.getItem("token"),
+    });
+  }
 
   render() {
     return (
@@ -14,9 +20,10 @@ class App extends Component {
         <Navbar isLoggedIn={this.state.isLoggedIn} />
         <Feed />
         <SignUp />
-        <Login />
+        <Login loginNav={this.loginHandler} />
       </div>
     );
   }
 }
+
 export default App;
