@@ -6,6 +6,7 @@ import "./App.css";
 
 class App extends Component {
   state = { isLoggedIn: true };
+
   render() {
     return (
       <div className="homepage">
