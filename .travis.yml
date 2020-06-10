@@ -16,7 +16,6 @@ before_script:
   - npm install
 
 script:
-  # - rake
   # - bundle exec rubocop
   # - npm test
 # - npm run lint
