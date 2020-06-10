@@ -6,21 +6,71 @@ import Login from "./components/login";
 import "./App.css";
 
 class App extends Component {
-  state = { isLoggedIn: null };
+  state = {
+    isLoggedIn: null,
+    showSignUp: true,
+    showLogin: true,
+    showFeed: true,
+  };
 
   loginHandler = () => {
+      this.setState({
+        isLoggedIn: localStorage.getItem("token"),
+      })
+   };
+
+  toggleSignUp = (bool) => {
     this.setState({
-      isLoggedIn: localStorage.getItem("token"),
+      showSignUp: bool,
+    });
+  };
+
+  toggleFeed = (bool) => {
+    this.setState({
+      showFeed: bool,
+    });
+  };
+
+  toggleLogin = (bool) => {
+    this.setState({
+      showLogin: bool,
     });
   };
 
   render() {
+    const { showSignUp, showLogin, showFeed } = this.state;
+
     return (
       <div className="homepage">
-        <Navbar isLoggedIn={this.state.isLoggedIn} />
-        <Feed />
-        <SignUp />
-        <Login loginNav={this.loginHandler} />
+       
+        <Login 
+          loginNav={this.loginHandler}
+          toggleSignUp={this.toggleSignUp}
+          toggleLogin={this.toggleLogin}
+          toggleFeed={this.toggleFeed}
+      />
+
+        <Navbar
+          isLoggedIn={this.state.isLoggedIn}
+          toggleSignUp={this.toggleSignUp}
+          toggleLogin={this.toggleLogin}
+          toggleFeed={this.toggleFeed}
+        />
+
+        {showSignUp && (
+          <SignUp
+            toggleSignUp={this.toggleSignUp}
+            toggleLogin={this.toggleLogin}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
+        {showFeed && (
+          <Feed
+            toggleLogin={this.toggleLogin}
+            toggleSignUp={this.toggleSignUp}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
       </div>
     );
   }
