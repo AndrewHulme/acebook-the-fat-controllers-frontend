@@ -8,11 +8,11 @@ import "./App.css";
 class App extends Component {
   state = { isLoggedIn: null };
 
-  loginHandler() {
+  loginHandler = () => {
     this.setState({
       isLoggedIn: localStorage.getItem("token"),
     });
-  }
+  };
 
   render() {
     return (

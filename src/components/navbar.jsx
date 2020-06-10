@@ -43,6 +43,16 @@ class Navbar extends Component {
     }
   };
 
+  static getDerivedStateFromProps(props, state) {
+    if (props.isLoggedIn !== state.isLoggedIn) {
+      return {
+        isLoggedIn: props.isLoggedIn,
+      };
+    }
+
+    return null;
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary static-top">
