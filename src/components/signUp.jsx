@@ -10,20 +10,11 @@ class SignUp extends Component {
   };
 
   handleChange = (event) => {
-    if (event.target.name === "name") {
-      this.setState({ name: event.target.value });
-    } else if (event.target.name === "username") {
-      this.setState({ username: event.target.value });
-    } else if (event.target.name === "email") {
-      this.setState({ email: event.target.value });
-    } else if (event.target.name === "password") {
-      this.setState({ password: event.target.value });
-    } else if (event.target.name === "passwordConfirmation") {
-      this.setState({ passwordConfirmation: event.target.value });
-    }
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
 
-    // this.state[event.target.name] = event.target.value;
-    console.log(this.state[event.target.name]);
+    // console.log(this.state[event.target.name]);
   };
 
   handleSubmit = (event) => {
