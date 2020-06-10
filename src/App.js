@@ -14,10 +14,10 @@ class App extends Component {
   };
 
   loginHandler = () => {
-      this.setState({
-        isLoggedIn: localStorage.getItem("token"),
-      })
-   };
+    this.setState({
+      isLoggedIn: localStorage.getItem("token"),
+    });
+  };
 
   toggleSignUp = (bool) => {
     this.setState({
@@ -42,16 +42,23 @@ class App extends Component {
 
     return (
       <div className="homepage">
-       
-        <Login 
-          loginNav={this.loginHandler}
+        <Navbar
+          isLoggedIn={this.state.isLoggedIn}
           toggleSignUp={this.toggleSignUp}
           toggleLogin={this.toggleLogin}
           toggleFeed={this.toggleFeed}
-      />
+        />
 
-        <Navbar
-          isLoggedIn={this.state.isLoggedIn}
+        {showFeed && (
+          <Feed
+            toggleLogin={this.toggleLogin}
+            toggleSignUp={this.toggleSignUp}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
+
+        <Login
+          loginNav={this.loginHandler}
           toggleSignUp={this.toggleSignUp}
           toggleLogin={this.toggleLogin}
           toggleFeed={this.toggleFeed}
@@ -61,13 +68,6 @@ class App extends Component {
           <SignUp
             toggleSignUp={this.toggleSignUp}
             toggleLogin={this.toggleLogin}
-            toggleFeed={this.toggleFeed}
-          />
-        )}
-        {showFeed && (
-          <Feed
-            toggleLogin={this.toggleLogin}
-            toggleSignUp={this.toggleSignUp}
             toggleFeed={this.toggleFeed}
           />
         )}
