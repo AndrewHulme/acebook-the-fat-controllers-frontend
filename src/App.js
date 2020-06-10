@@ -5,14 +5,25 @@ import SignUp from "./components/signUp";
 import "./App.css";
 
 class App extends Component {
-  state = { isLoggedIn: true };
+  state = {
+    isLoggedIn: true,
+    showSignUp: true,
+  };
+
+  toggleSignUp = () => {
+    this.setState({
+      showSignUp: !this.state.showSignUp,
+    });
+  };
 
   render() {
+    const { showSignUp } = this.state;
+
     return (
       <div className="homepage">
         <Navbar isLoggedIn={this.state.isLoggedIn} />
         <Feed />
-        <SignUp />
+        {showSignUp && <SignUp toggleSignUp={this.toggleSignUp} />}
       </div>
     );
   }

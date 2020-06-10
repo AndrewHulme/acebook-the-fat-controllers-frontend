@@ -25,13 +25,21 @@ class SignUp extends Component {
       .then((html) => this.onPostResponse(html));
   };
 
-  onPostResponse(response) {
-    //IF USERNAME ALREADY EXISTS
-    //IF EMAIL ALREADY EXISTS
-    //IF PASSWORD BLANK
-    //ELSE -
-    // REMOVE SIGNUP FORM FROM PAGE
-    // DISPLAY LOGIN ON PAGE
+  onPostResponse(input) {
+    let response = JSON.parse(input);
+    if (response.created_at == null) {
+      if (response.hasOwnProperty("username")) {
+        alert("Username taken.");
+      } else if (response.hasOwnProperty("password_confirmation")) {
+        alert("Passwords don't match.");
+      } else if (response.hasOwnProperty("email")) {
+        alert("Account already exists with that email.");
+      } else {
+        alert("There was a problem signing up.");
+      }
+    } else {
+      this.props.toggleSignUp();
+    }
   }
 
   render() {
