@@ -12,6 +12,7 @@ class App extends Component {
     showSignUp: true,
     showLogin: true,
     showFeed: true,
+    showNewPost: true,
   };
 
   loginHandler = () => {
@@ -39,7 +40,7 @@ class App extends Component {
   };
 
   render() {
-    const { showSignUp, showLogin, showFeed } = this.state;
+    const { showSignUp, showLogin, showFeed, showNewPost } = this.state;
 
     return (
       <div className="homepage">
@@ -50,7 +51,7 @@ class App extends Component {
           toggleFeed={this.toggleFeed}
         />
 
-        <NewPost isLoggedIn={this.state.isLoggedIn} />
+        {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
 
         {showFeed && (
           <Feed
