@@ -5,6 +5,7 @@ class Post extends Component {
     message: this.props.message,
     username: this.props.username,
   };
+
   render() {
     return (
       <div className="postbox">

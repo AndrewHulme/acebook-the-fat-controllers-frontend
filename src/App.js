@@ -5,14 +5,57 @@ import SignUp from "./components/signUp";
 import "./App.css";
 
 class App extends Component {
-  state = { isLoggedIn: true };
+  state = {
+    isLoggedIn: false,
+    showSignUp: true,
+    showLogin: true,
+    showFeed: true,
+  };
+
+  toggleSignUp = (bool) => {
+    this.setState({
+      showSignUp: bool,
+    });
+  };
+
+  toggleFeed = (bool) => {
+    this.setState({
+      showFeed: bool,
+    });
+  };
+
+  toggleLogin = (bool) => {
+    this.setState({
+      showLogin: bool,
+    });
+  };
 
   render() {
+    const { showSignUp, showLogin, showFeed } = this.state;
+
     return (
       <div className="homepage">
-        <Navbar isLoggedIn={this.state.isLoggedIn} />
-        <Feed />
-        <SignUp />
+        <Navbar
+          isLoggedIn={this.state.isLoggedIn}
+          toggleSignUp={this.toggleSignUp}
+          toggleLogin={this.toggleLogin}
+          toggleFeed={this.toggleFeed}
+        />
+
+        {showSignUp && (
+          <SignUp
+            toggleSignUp={this.toggleSignUp}
+            toggleLogin={this.toggleLogin}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
+        {showFeed && (
+          <Feed
+            toggleLogin={this.toggleLogin}
+            toggleSignUp={this.toggleSignUp}
+            toggleFeed={this.toggleFeed}
+          />
+        )}
       </div>
     );
   }

@@ -1,27 +1,46 @@
 import React, { Component } from "react";
 
 class SignUp extends Component {
-  state = {
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  };
+  state = {};
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
-
-    // console.log(this.state[event.target.name]);
   };
 
   handleSubmit = (event) => {
-    console.log(this.state);
-    //Insert API request here
     event.preventDefault();
+    const url = "http://acebook-backend.herokuapp.com/signup";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: this.state,
+      }),
+    })
+      .then((response) => response.text())
+      .then((html) => this.onPostResponse(html));
   };
+
+  onPostResponse(input) {
+    let response = JSON.parse(input);
+    if (response.created_at == null) {
+      if (response.hasOwnProperty("username")) {
+        alert("Username taken.");
+      } else if (response.hasOwnProperty("password_confirmation")) {
+        alert("Passwords don't match.");
+      } else if (response.hasOwnProperty("email")) {
+        alert("Account already exists with that email.");
+      } else {
+        alert("There was a problem signing up.");
+      }
+    } else {
+      this.props.toggleSignUp(false);
+    }
+  }
 
   render() {
     return (
@@ -66,7 +85,7 @@ class SignUp extends Component {
           <label>Confirm password:</label>
           <input
             type="password"
-            name="passwordConfirmation"
+            name="password_confirmation"
             value={this.state.value}
             onChange={this.handleChange}
           />
