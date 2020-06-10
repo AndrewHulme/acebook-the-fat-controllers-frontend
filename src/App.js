@@ -2,15 +2,22 @@ import React, { Component } from "react";
 import Navbar from "./components/navbar";
 import Feed from "./components/feed";
 import SignUp from "./components/signUp";
+import Login from "./components/login";
 import "./App.css";
 
 class App extends Component {
   state = {
-    isLoggedIn: false,
+    isLoggedIn: null,
     showSignUp: true,
     showLogin: true,
     showFeed: true,
   };
+
+  loginHandler = () => {
+      this.setState({
+        isLoggedIn: localStorage.getItem("token"),
+      })
+   };
 
   toggleSignUp = (bool) => {
     this.setState({
@@ -35,6 +42,14 @@ class App extends Component {
 
     return (
       <div className="homepage">
+       
+        <Login 
+          loginNav={this.loginHandler}
+          toggleSignUp={this.toggleSignUp}
+          toggleLogin={this.toggleLogin}
+          toggleFeed={this.toggleFeed}
+      />
+
         <Navbar
           isLoggedIn={this.state.isLoggedIn}
           toggleSignUp={this.toggleSignUp}

@@ -32,7 +32,7 @@ class Navbar extends Component {
   }
 
   createMenu = () => {
-    if (this.state.isLoggedIn === true) {
+    if (this.state.isLoggedIn !== null) {
       return this.state.whenLoggedIn.map((item) =>
         this.createMenuItem(item.name, item.link)
       );
@@ -42,6 +42,16 @@ class Navbar extends Component {
       );
     }
   };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.isLoggedIn !== state.isLoggedIn) {
+      return {
+        isLoggedIn: props.isLoggedIn,
+      };
+    }
+
+    return null;
+  }
 
   render() {
     return (
