@@ -13,7 +13,7 @@ class App extends Component {
     showSignUp: false,
     showLogin: false,
     showFeed: true,
-    showNewPost: true,
+    showNewPost: false,
   };
 
   loginHandler = () => {
@@ -31,6 +31,12 @@ class App extends Component {
   toggleSignUp = (bool) => {
     this.setState({
       showSignUp: bool,
+    });
+  };
+
+  toggleNewPost = (bool) => {
+    this.setState({
+      showNewPost: bool,
     });
   };
 
@@ -57,6 +63,7 @@ class App extends Component {
           toggleLogin={this.toggleLogin}
           toggleFeed={this.toggleFeed}
           clearLoginData={this.clearLoginData}
+          toggleNewPost={this.toggleNewPost}
         />
 
         {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
@@ -66,6 +73,7 @@ class App extends Component {
             toggleLogin={this.toggleLogin}
             toggleSignUp={this.toggleSignUp}
             toggleFeed={this.toggleFeed}
+            toggleNewPost={this.toggleNewPost}
           />
         )}
 
@@ -75,6 +83,7 @@ class App extends Component {
             toggleSignUp={this.toggleSignUp}
             toggleLogin={this.toggleLogin}
             toggleFeed={this.toggleFeed}
+            toggleNewPost={this.toggleNewPost}
           />
         )}
 
@@ -83,6 +92,7 @@ class App extends Component {
             toggleSignUp={this.toggleSignUp}
             toggleLogin={this.toggleLogin}
             toggleFeed={this.toggleFeed}
+            toggleNewPost={this.toggleNewPost}
           />
         )}
       </div>

@@ -57,12 +57,14 @@ class Navbar extends Component {
     this.props.toggleSignUp(true);
     this.props.toggleLogin(false);
     this.props.toggleFeed(false);
+    this.props.toggleNewPost(false);
   };
 
   clickLogin = () => {
     this.props.toggleLogin(true);
     this.props.toggleSignUp(false);
     this.props.toggleFeed(false);
+    this.props.toggleNewPost(false);
   };
 
   clickSignout = () => {
@@ -71,6 +73,7 @@ class Navbar extends Component {
     this.props.toggleFeed(true);
     localStorage.clear();
     this.props.clearLoginData();
+    this.props.toggleNewPost(false);
   };
 
   render() {

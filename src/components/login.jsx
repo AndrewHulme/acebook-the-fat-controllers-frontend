@@ -44,6 +44,7 @@ class Login extends Component {
           this.props.toggleLogin(false);
           this.props.toggleSignUp(false);
           this.props.toggleFeed(true);
+          this.props.toggleNewPost(true);
         }
       });
   };
