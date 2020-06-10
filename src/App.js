@@ -3,6 +3,7 @@ import Navbar from "./components/navbar";
 import Feed from "./components/feed";
 import SignUp from "./components/signUp";
 import Login from "./components/login";
+import NewPost from "./components/newPost";
 import "./App.css";
 
 class App extends Component {
@@ -12,6 +13,7 @@ class App extends Component {
     showSignUp: false,
     showLogin: false,
     showFeed: true,
+    showNewPost: true,
   };
 
   loginHandler = () => {
@@ -45,7 +47,7 @@ class App extends Component {
   };
 
   render() {
-    const { showSignUp, showLogin, showFeed } = this.state;
+    const { showSignUp, showLogin, showFeed, showNewPost } = this.state;
 
     return (
       <div className="homepage">
@@ -56,6 +58,8 @@ class App extends Component {
           toggleFeed={this.toggleFeed}
           clearLoginData={this.clearLoginData}
         />
+
+        {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
 
         {showFeed && (
           <Feed

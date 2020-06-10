@@ -18,6 +18,8 @@ class Login extends Component {
     event.preventDefault();
   };
 
+  // curl -H "Content-Type: application/json" -X POST -d '{"email":"email","password":"12345"}' http://localhost:3000/login
+
   handleSubmit = (evt) => {
     evt.preventDefault();
     fetch(`https://acebook-backend.herokuapp.com/login`, {
