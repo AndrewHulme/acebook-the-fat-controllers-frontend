@@ -3,6 +3,7 @@ import Navbar from "./components/navbar";
 import Feed from "./components/feed";
 import SignUp from "./components/signUp";
 import Login from "./components/login";
+import NewPost from "./components/newPost";
 import "./App.css";
 
 class App extends Component {
@@ -48,6 +49,8 @@ class App extends Component {
           toggleLogin={this.toggleLogin}
           toggleFeed={this.toggleFeed}
         />
+
+        <NewPost />
 
         {showFeed && (
           <Feed
