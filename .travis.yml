@@ -1,7 +1,6 @@
 language: ruby
 rvm:
-  - 2.5.0
-  - jruby
+  - 2.7.0
 
 node_js:
   - "node"
