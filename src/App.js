@@ -50,7 +50,7 @@ class App extends Component {
           toggleFeed={this.toggleFeed}
         />
 
-        <NewPost />
+        <NewPost isLoggedIn={this.state.isLoggedIn} />
 
         {showFeed && (
           <Feed
