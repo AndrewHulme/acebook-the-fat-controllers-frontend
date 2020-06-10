@@ -13,7 +13,7 @@ class App extends Component {
     showSignUp: false,
     showLogin: false,
     showFeed: true,
-    showNewPost: false,
+    showNewPost: localStorage.getItem("token") == null ? false : true,
   };
 
   loginHandler = () => {
