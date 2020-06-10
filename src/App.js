@@ -6,7 +6,7 @@ import Login from "./components/login";
 import "./App.css";
 
 class App extends Component {
-  state = { isLoggedIn: false };
+  state = { isLoggedIn: localStorage.getItem("token") };
 
   render() {
     return (
@@ -19,5 +19,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;
