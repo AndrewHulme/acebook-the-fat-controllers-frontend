@@ -1,23 +1,36 @@
 import React, { Component } from "react";
 
 class SignUp extends Component {
-  state = {
-    name: "",
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
-  };
+  state = {};
 
   handleChange = (event) => {
     this.state[event.target.name] = event.target.value;
   };
 
   handleSubmit = (event) => {
-    console.log(this.state);
-    //Insert API request here
     event.preventDefault();
+    const url = "http://acebook-backend.herokuapp.com/signup";
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: this.state,
+      }),
+    })
+      .then((response) => response.text())
+      .then((html) => this.onPostResponse(html));
   };
+
+  onPostResponse(response) {
+    //IF USERNAME ALREADY EXISTS
+    //IF EMAIL ALREADY EXISTS
+    //IF PASSWORD BLANK
+    //ELSE -
+    // REMOVE SIGNUP FORM FROM PAGE
+    // DISPLAY LOGIN ON PAGE
+  }
 
   render() {
     return (
@@ -62,7 +75,7 @@ class SignUp extends Component {
           <label>Confirm password:</label>
           <input
             type="password"
-            name="passwordConfirmation"
+            name="password_confirmation"
             value={this.state.value}
             onChange={this.handleChange}
           />
