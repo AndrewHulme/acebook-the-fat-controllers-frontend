@@ -38,7 +38,7 @@ class SignUp extends Component {
         alert("There was a problem signing up.");
       }
     } else {
-      this.props.toggleSignUp();
+      this.props.toggleSignUp(false);
     }
   }
 
