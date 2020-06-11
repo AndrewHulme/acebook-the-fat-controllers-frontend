@@ -33,8 +33,11 @@ class Login extends Component {
         // SAVE USERNAME TO LOCAL STORAGE HERE
 
         if (data.hasOwnProperty("error")) {
-          alert("Login failed - Invalid details.");
+          this.props.changeAppState("errorMessage", ["Invalid credentials"]);
+          this.props.changeAppState("showErrors", true);
         } else {
+          this.props.changeAppState("errorMessage", []);
+          this.props.changeAppState("showErrors", false);
           this.props.changeAppState("isLoggedIn", data.auth_token);
           this.props.changeAppState("showLogin", false);
           this.props.changeAppState("showSignUp", false);

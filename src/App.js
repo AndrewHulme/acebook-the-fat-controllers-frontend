@@ -4,6 +4,7 @@ import Feed from "./components/feed";
 import SignUp from "./components/signUp";
 import Login from "./components/login";
 import NewPost from "./components/newPost";
+import Errors from "./components/errors";
 import "./App.css";
 import styles from "./css/master.module.css";
 
@@ -15,6 +16,8 @@ class App extends Component {
     showLogin: false,
     showFeed: true,
     showNewPost: localStorage.getItem("token") == null ? false : true,
+    showErrors: false,
+    errorMessage: null,
   };
 
   changeAppState = (key, value) => {
@@ -24,7 +27,13 @@ class App extends Component {
   };
 
   render() {
-    const { showSignUp, showLogin, showFeed, showNewPost } = this.state;
+    const {
+      showSignUp,
+      showLogin,
+      showFeed,
+      showNewPost,
+      showErrors,
+    } = this.state;
 
     return (
       <div className={styles.homepage}>
@@ -34,6 +43,13 @@ class App extends Component {
         />
 
         <div className={styles.content}>
+          {showErrors && (
+            <Errors
+              errorMessage={this.state.errorMessage}
+              changeAppState={this.changeAppState}
+            />
+          )}
+
           {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
 
           {showFeed && <Feed changeAppState={this.changeAppState} />}

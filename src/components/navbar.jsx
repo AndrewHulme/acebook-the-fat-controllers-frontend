@@ -59,6 +59,8 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showSignUp", true);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   clickLogin = () => {
@@ -67,6 +69,8 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showLogin", true);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   clickSignout = () => {
@@ -77,6 +81,8 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", true);
     localStorage.clear();
     this.props.changeAppState("isLoggedIn", null);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   render() {

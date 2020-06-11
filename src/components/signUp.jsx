@@ -30,13 +30,31 @@ class SignUp extends Component {
     let response = JSON.parse(input);
 
     if (response.created_at == null) {
-      alert("There was a problem signing up. Please try again.");
+      let errorMessage = [];
+
+      for (let [key, value] of Object.entries(response)) {
+        if (key === "password_confirmation") {
+          errorMessage.push("Passwords do not match");
+        } else {
+          let error = this.capitalize(key + " " + value);
+          errorMessage.push(error);
+        }
+      }
+
+      this.props.changeAppState("errorMessage", errorMessage);
+      this.props.changeAppState("showErrors", true);
     } else {
+      this.props.changeAppState("errorMessage", []);
+      this.props.changeAppState("showErrors", false);
       this.props.changeAppState("showSignUp", false);
       this.props.changeAppState("showLogin", true);
       this.props.changeAppState("showFeed", false);
     }
   }
+
+  capitalize = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
 
   render() {
     return (
