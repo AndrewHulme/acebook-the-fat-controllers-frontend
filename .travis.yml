@@ -9,7 +9,7 @@ install:
   # - gem uninstall bundler
   # - gem install bundler --version '1.7.4'
   - bundle install
-  - nvm install 14.3
+  - nvm install 14.2
 
 before_script:
   - npm install
@@ -21,10 +21,10 @@ script:
  - npm build
 
 
-deploy:
- - provider: surge
- - project: ./build/
- - domain: acebook.surge.sh
- - skip_cleanup: true
- on:
-   - branch: travis-surge
+# deploy:
+#  - provider: surge
+#  - project: ./build/
+#  - domain: acebook.surge.sh
+#  - skip_cleanup: true
+#  on:
+#    - branch: travis-surge
