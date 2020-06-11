@@ -36,6 +36,33 @@ class Feed extends Component {
       );
   };
 
+  timeSince(date) {
+    let seconds = Math.floor((new Date() - date) / 1000);
+
+    let interval = Math.floor(seconds / 31536000);
+
+    if (interval > 1) {
+      return interval + " years";
+    }
+    interval = Math.floor(seconds / 2592000);
+    if (interval > 1) {
+      return interval + " months";
+    }
+    interval = Math.floor(seconds / 86400);
+    if (interval > 1) {
+      return interval + " days";
+    }
+    interval = Math.floor(seconds / 3600);
+    if (interval > 1) {
+      return interval + " hours";
+    }
+    interval = Math.floor(seconds / 60);
+    if (interval > 1) {
+      return interval + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+  }
+
   render() {
     const { error, isLoaded } = this.state;
     if (error) {
@@ -46,17 +73,6 @@ class Feed extends Component {
       return (
         <div>
           {this.state.posts.reverse().map((post, index) => (
-            // <Post
-            //   key={index}
-            //   username={post.user.username}
-            //   message={post.message}
-            // />
-
-            // <div className="postbox" key={index}>
-            //   <div className="info">Username: {post.user.username}</div>
-            //   <div className="message">Message: {post.message}</div>
-            // </div>
-
             <div className="card gedf-card">
               <div class="card-header">
                 <div className="d-flex justify-content-between align-items-center">
@@ -79,7 +95,9 @@ class Feed extends Component {
               <div className="card-body">
                 <div className="text-muted h7 mb-2">
                   {" "}
-                  <i className="fa fa-clock-o"></i>15 min ago
+                  <i className="fa fa-clock-o">
+                    {this.timeSince(Date.parse(post.created_at))} ago
+                  </i>
                 </div>
                 <a className="card-link" href="#"></a>
                 <p className="card-text">{post.message}</p>
