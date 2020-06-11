@@ -35,10 +35,12 @@ class NewPost extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data);
+        console.log(data);
+        this.props.updateFeed();
+        this.props.changeAppState("refreshFeed", true);
       });
 
-    this.setState({ value: "" });
+    // this.setState({ value: "" });
   };
 
   render() {

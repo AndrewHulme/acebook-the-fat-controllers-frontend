@@ -8,7 +8,24 @@ class Feed extends Component {
       error: null,
       isLoaded: false,
       posts: [],
+      updateToggle: true,
     };
+  }
+
+  whateveryouwant = () => {
+    console.log("Whateveryouwant called from feed component");
+    this.forceUpdate();
+
+    // this.setState({ updateToggle: !this.state.updateToggle });
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.refreshFeed !== state.refreshFeed) {
+      return {
+        refreshFeed: props.refreshFeed,
+      };
+    }
+    return null;
   }
 
   componentDidMount() {
