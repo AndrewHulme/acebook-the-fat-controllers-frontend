@@ -1,0 +1,14 @@
+.homepage {
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px;
+}
+
+#button {
+  background-color: #4267b2 !important;
+  border: none;
+}

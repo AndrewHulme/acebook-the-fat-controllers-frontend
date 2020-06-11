@@ -26,7 +26,6 @@ class Feed extends Component {
             isLoaded: true,
             posts: result,
           });
-          // console.log(result);
         },
         (error) => {
           this.setState({

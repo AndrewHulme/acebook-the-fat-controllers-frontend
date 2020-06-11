@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "../css/master.module.css";
 
 class Login extends Component {
   constructor(props) {
@@ -32,8 +33,11 @@ class Login extends Component {
         // SAVE USERNAME TO LOCAL STORAGE HERE
 
         if (data.hasOwnProperty("error")) {
-          alert("Login failed - Invalid details.");
+          this.props.changeAppState("errorMessage", ["Invalid credentials"]);
+          this.props.changeAppState("showErrors", true);
         } else {
+          this.props.changeAppState("errorMessage", []);
+          this.props.changeAppState("showErrors", false);
           this.props.changeAppState("isLoggedIn", data.auth_token);
           this.props.changeAppState("showLogin", false);
           this.props.changeAppState("showSignUp", false);
@@ -45,27 +49,37 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="our-form">
-        <div className="form-group">
-          <label>Email:</label>
+      <div className={styles.form}>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="email"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          <br />
           <input
-            type="text"
-            name="email"
-            value={this.state.value}
-            onChange={this.handleChange}
+            type="submit"
+            className="btn btn-primary"
+            id={styles.button}
+            value="Submit"
           />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
+        </form>
+      </div>
     );
   }
 }

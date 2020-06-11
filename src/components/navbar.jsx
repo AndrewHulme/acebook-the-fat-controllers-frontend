@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "../css/navbar.module.css";
 
 class Navbar extends Component {
   state = {
@@ -29,11 +30,11 @@ class Navbar extends Component {
     } else {
       return (
         <ul className="navbar-nav ml-auto">
-          <li className="nav-item" key="My Profile">
+          {/* <li className="nav-item" key="My Profile">
             <a className="nav-link" href="#">
               My Profile
             </a>
-          </li>
+          </li> */}
           <li className="nav-item" key="logout">
             <a className="nav-link" href="#" onClick={this.clickSignout}>
               Sign Out
@@ -58,6 +59,8 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showSignUp", true);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   clickLogin = () => {
@@ -65,6 +68,8 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showLogin", true);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   clickSignout = () => {
@@ -74,15 +79,20 @@ class Navbar extends Component {
     this.props.changeAppState("showFeed", true);
     localStorage.clear();
     this.props.changeAppState("isLoggedIn", null);
+    this.props.changeAppState("errorMessage", []);
+    this.props.changeAppState("showErrors", false);
   };
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary static-top">
-        <div className="container">
-          <a className="navbar-brand" href="/">
-            Acebook
-            <small> - courtesy of the Fat Controllers</small>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-primary static-top"
+        id={styles.navbar}
+      >
+        <div className="container" id={styles.container}>
+          <a className="navbar-brand" href="/" id={styles.brand}>
+            <span id={styles.acebook}>Acebook</span>
+            <small>&emsp;courtesy of the Fat Controllers</small>
           </a>
           <button
             className="navbar-toggler"
