@@ -2,12 +2,7 @@ import React, { Component } from "react";
 import styles from "../css/master.module.css";
 
 class SignUp extends Component {
-  initialState = {};
-
-  constructor(props) {
-    super(props);
-    this.state = this.initialState;
-  }
+  state = {};
 
   handleChange = (event) => {
     this.setState({
@@ -17,10 +12,6 @@ class SignUp extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    if (this.state.length != 5) {
-      alert("Please fill all fields.");
-      break;
-    }
     const url = "http://acebook-backend.herokuapp.com/signup";
     fetch(url, {
       method: "POST",
@@ -36,19 +27,10 @@ class SignUp extends Component {
   };
 
   onPostResponse(input) {
-    this.setState(this.initialState);
     let response = JSON.parse(input);
-    console.log(response);
+
     if (response.created_at == null) {
-      if (response.hasOwnProperty("username")) {
-        alert("Username Error. Please try again.");
-      } else if (response.hasOwnProperty("password_confirmation")) {
-        alert("Password Error. Please try again.");
-      } else if (response.hasOwnProperty("email")) {
-        alert("Email error. Please Try again.");
-      } else {
-        alert("There was a problem signing up. Please try again.");
-      }
+      alert("There was a problem signing up. Please try again.");
     } else {
       this.props.changeAppState("showSignUp", false);
       this.props.changeAppState("showLogin", true);
@@ -68,6 +50,7 @@ class SignUp extends Component {
               name="username"
               value={this.state.value}
               onChange={this.handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -78,6 +61,7 @@ class SignUp extends Component {
               name="name"
               value={this.state.value}
               onChange={this.handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -88,6 +72,7 @@ class SignUp extends Component {
               name="email"
               value={this.state.value}
               onChange={this.handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -98,6 +83,7 @@ class SignUp extends Component {
               name="password"
               value={this.state.value}
               onChange={this.handleChange}
+              required
             />
           </div>
           <div className="form-group">
@@ -108,6 +94,7 @@ class SignUp extends Component {
               name="password_confirmation"
               value={this.state.value}
               onChange={this.handleChange}
+              required
             />
           </div>
           <br></br>
