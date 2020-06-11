@@ -7,19 +7,28 @@ import NewPost from "./components/newPost";
 import "./App.css";
 
 class App extends Component {
-  state = {
-    isLoggedIn: localStorage.getItem("token"),
-    showLogin: false,
-    showSignUp: false,
-    showLogin: false,
-    showFeed: true,
-    showNewPost: localStorage.getItem("token") == null ? false : true,
-  };
+  constructor(props) {
+    super(props);
+
+    this.child = React.createRef();
+
+    this.state = {
+      isLoggedIn: localStorage.getItem("token"),
+      showLogin: false,
+      showSignUp: false,
+      showFeed: true,
+      showNewPost: localStorage.getItem("token") == null ? false : true,
+    };
+  }
 
   changeAppState = (key, value) => {
     this.setState({
       [key]: value,
     });
+  };
+
+  updateFeed = () => {
+    this.child.current.api();
   };
 
   render() {
@@ -32,9 +41,17 @@ class App extends Component {
           changeAppState={this.changeAppState}
         />
 
-        {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
+        {showNewPost && (
+          <NewPost
+            isLoggedIn={this.state.isLoggedIn}
+            changeAppState={this.changeAppState}
+            updateFeed={this.updateFeed}
+          />
+        )}
 
-        {showFeed && <Feed changeAppState={this.changeAppState} />}
+        {showFeed && (
+          <Feed changeAppState={this.changeAppState} ref={this.child} />
+        )}
 
         {showLogin && <Login changeAppState={this.changeAppState} />}
 

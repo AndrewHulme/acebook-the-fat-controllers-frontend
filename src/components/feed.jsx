@@ -12,6 +12,11 @@ class Feed extends Component {
   }
 
   componentDidMount() {
+    this.api();
+  }
+
+  api = () => {
+    // console.log("apid called");
     fetch("http://acebook-backend.herokuapp.com/posts")
       .then((res) => res.json())
       .then(
@@ -20,7 +25,7 @@ class Feed extends Component {
             isLoaded: true,
             posts: result,
           });
-          console.log(result);
+          // console.log(result);
         },
         (error) => {
           this.setState({
@@ -29,7 +34,7 @@ class Feed extends Component {
           });
         }
       );
-  }
+  };
 
   render() {
     const { error, isLoaded } = this.state;
@@ -41,11 +46,16 @@ class Feed extends Component {
       return (
         <div>
           {this.state.posts.reverse().map((post, index) => (
-            <Post
-              key={index}
-              username={post.user.username}
-              message={post.message}
-            />
+            // <Post
+            //   key={index}
+            //   username={post.user.username}
+            //   message={post.message}
+            // />
+
+            <div className="postbox" key={index}>
+              <div className="info">Username: {post.user.username}</div>
+              <div className="message">Message: {post.message}</div>
+            </div>
           ))}
         </div>
       );
