@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Post from "./post";
 import "../feed.css";
 
 class Feed extends Component {
@@ -86,7 +85,7 @@ class Feed extends Component {
         <div>
           {console.log(this.state.posts[0].user.username)}
           {this.state.posts.reverse().map((post, index) => (
-            <div className="card gedf-card">
+            <div className="card gedf-card" key={index}>
               <div className="card-header">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex justify-content-between align-items-center">
@@ -114,7 +113,7 @@ class Feed extends Component {
                     {this.timeSince(Date.parse(post.created_at))} ago
                   </i>
                 </div>
-                <a className="card-link" href="#"></a>
+                <a className="card-link" href="/#"></a>
                 <p className="card-text">{post.message}</p>
               </div>
             </div>

@@ -16,12 +16,12 @@ class Navbar extends Component {
       return (
         <ul className="navbar-nav ml-auto">
           <li className="nav-item" key="login">
-            <a className="nav-link" href="#" onClick={this.clickLogin}>
+            <a className="nav-link" href="/#" onClick={this.clickLogin}>
               Login
             </a>
           </li>
           <li className="nav-item" key="signup">
-            <a className="nav-link" href="#" onClick={this.clickSignUp}>
+            <a className="nav-link" href="/#" onClick={this.clickSignUp}>
               Signup
             </a>
           </li>
@@ -36,7 +36,7 @@ class Navbar extends Component {
             </a>
           </li> */}
           <li className="nav-item" key="logout">
-            <a className="nav-link" href="#" onClick={this.clickSignout}>
+            <a className="nav-link" href="/#" onClick={this.clickSignout}>
               Sign Out
             </a>
           </li>
