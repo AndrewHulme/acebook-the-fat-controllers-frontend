@@ -72,7 +72,12 @@ class Login extends Component {
             />
           </div>
           <br />
-          <input type="submit" className="btn btn-primary" value="Submit" />
+          <input
+            type="submit"
+            className="btn btn-primary"
+            id={styles.button}
+            value="Submit"
+          />
         </form>
       </div>
     );

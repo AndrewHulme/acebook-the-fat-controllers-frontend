@@ -116,7 +116,12 @@ class SignUp extends Component {
             />
           </div>
           <br></br>
-          <input type="submit" className="btn btn-primary" value="Submit" />
+          <input
+            type="submit"
+            id={styles.button}
+            className="btn btn-primary"
+            value="Submit"
+          />
         </form>
       </div>
     );
