@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "../css/navbar.module.css";
 
 class Navbar extends Component {
   state = {
@@ -87,11 +88,14 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary static-top">
-        <div className="container">
-          <a className="navbar-brand" href="/">
-            Acebook
-            <small> - courtesy of the Fat Controllers</small>
+      <nav
+        className="navbar navbar-expand-lg navbar-dark bg-primary static-top"
+        id={styles.navbar}
+      >
+        <div className="container" id={styles.container}>
+          <a className="navbar-brand" href="/" id={styles.brand}>
+            <span id={styles.acebook}>Acebook</span>
+            <small>&emsp;courtesy of the Fat Controllers</small>
           </a>
           <button
             className="navbar-toggler"
