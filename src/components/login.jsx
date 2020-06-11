@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import styles from "../css/master.module.css";
 
 class Login extends Component {
   constructor(props) {
@@ -45,27 +46,32 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="our-form">
-        <div className="form-group">
-          <label>Email:</label>
-          <input
-            type="text"
-            name="email"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-        </div>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className={styles.form}>
+        <form onSubmit={this.handleSubmit}>
+          <div className="form-group">
+            <label>Email:</label>
+            <input
+              type="text"
+              className="form-control"
+              name="email"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label>Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              name="password"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          <br />
+          <input type="submit" className="btn btn-primary" value="Submit" />
+        </form>
+      </div>
     );
   }
 }

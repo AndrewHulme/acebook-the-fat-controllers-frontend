@@ -5,6 +5,7 @@ import SignUp from "./components/signUp";
 import Login from "./components/login";
 import NewPost from "./components/newPost";
 import "./App.css";
+import styles from "./css/master.module.css";
 
 class App extends Component {
   state = {
@@ -26,19 +27,21 @@ class App extends Component {
     const { showSignUp, showLogin, showFeed, showNewPost } = this.state;
 
     return (
-      <div className="homepage">
+      <div className={styles.homepage}>
         <Navbar
           isLoggedIn={this.state.isLoggedIn}
           changeAppState={this.changeAppState}
         />
 
-        {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
+        <div className={styles.content}>
+          {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
 
-        {showFeed && <Feed changeAppState={this.changeAppState} />}
+          {showFeed && <Feed changeAppState={this.changeAppState} />}
 
-        {showLogin && <Login changeAppState={this.changeAppState} />}
+          {showLogin && <Login changeAppState={this.changeAppState} />}
 
-        {showSignUp && <SignUp changeAppState={this.changeAppState} />}
+          {showSignUp && <SignUp changeAppState={this.changeAppState} />}
+        </div>
       </div>
     );
   }
