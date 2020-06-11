@@ -73,17 +73,6 @@ class Feed extends Component {
       return (
         <div>
           {this.state.posts.reverse().map((post, index) => (
-            // <Post
-            //   key={index}
-            //   username={post.user.username}
-            //   message={post.message}
-            // />
-
-            // <div className="postbox" key={index}>
-            //   <div className="info">Username: {post.user.username}</div>
-            //   <div className="message">Message: {post.message}</div>
-            // </div>
-
             <div className="card gedf-card">
               <div class="card-header">
                 <div className="d-flex justify-content-between align-items-center">
