@@ -13,13 +13,6 @@ class Login extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleSubmit = (event) => {
-    //Insert API request here
-    event.preventDefault();
-  };
-
-  // curl -H "Content-Type: application/json" -X POST -d '{"email":"email","password":"12345"}' http://localhost:3000/login
-
   handleSubmit = (evt) => {
     evt.preventDefault();
     fetch(`https://acebook-backend.herokuapp.com/login`, {
@@ -36,15 +29,16 @@ class Login extends Component {
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
+        // SAVE USERNAME TO LOCAL STORAGE HERE
 
         if (data.hasOwnProperty("error")) {
           alert("Login failed - Invalid details.");
         } else {
-          this.props.loginNav();
-          this.props.toggleLogin(false);
-          this.props.toggleSignUp(false);
-          this.props.toggleFeed(true);
-          this.props.toggleNewPost(true);
+          this.props.changeAppState("isLoggedIn", data.auth_token);
+          this.props.changeAppState("showLogin", false);
+          this.props.changeAppState("showSignUp", false);
+          this.props.changeAppState("showFeed", true);
+          this.props.changeAppState("showNewPost", true);
         }
       });
   };

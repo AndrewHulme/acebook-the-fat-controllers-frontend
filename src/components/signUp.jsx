@@ -38,9 +38,9 @@ class SignUp extends Component {
         alert("There was a problem signing up.");
       }
     } else {
-      this.props.toggleSignUp(false);
-      this.props.toggleLogin(true);
-      this.props.toggleFeed(false);
+      this.props.changeAppState("showSignUp", false);
+      this.props.changeAppState("showLogin", true);
+      this.props.changeAppState("showFeed", false);
     }
   }
 

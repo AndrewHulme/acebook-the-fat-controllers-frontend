@@ -54,26 +54,29 @@ class Navbar extends Component {
   }
 
   clickSignUp = () => {
-    this.props.toggleSignUp(true);
-    this.props.toggleLogin(false);
-    this.props.toggleFeed(false);
-    this.props.toggleNewPost(false);
+    this.props.changeAppState("showLogin", false);
+    this.props.changeAppState("showFeed", false);
+    this.props.changeAppState("showFeed", false);
+    this.props.changeAppState("showNewPost", false);
+    this.props.changeAppState("showSignUp", true);
   };
 
   clickLogin = () => {
-    this.props.toggleLogin(true);
-    this.props.toggleSignUp(false);
-    this.props.toggleFeed(false);
-    this.props.toggleNewPost(false);
+    this.props.changeAppState("showSignUp", false);
+    this.props.changeAppState("showFeed", false);
+    this.props.changeAppState("showFeed", false);
+    this.props.changeAppState("showNewPost", false);
+    this.props.changeAppState("showLogin", true);
   };
 
   clickSignout = () => {
-    this.props.toggleLogin(false);
-    this.props.toggleSignUp(false);
-    this.props.toggleFeed(true);
+    this.props.changeAppState("showSignUp", false);
+    this.props.changeAppState("showFeed", false);
+    this.props.changeAppState("showLogin", false);
+    this.props.changeAppState("showNewPost", false);
+    this.props.changeAppState("showFeed", true);
     localStorage.clear();
-    this.props.clearLoginData();
-    this.props.toggleNewPost(false);
+    this.props.changeAppState("isLoggedIn", null);
   };
 
   render() {

@@ -20,6 +20,7 @@ class Feed extends Component {
             isLoaded: true,
             posts: result,
           });
+          console.log(result);
         },
         (error) => {
           this.setState({
@@ -39,7 +40,7 @@ class Feed extends Component {
     } else {
       return (
         <div>
-          {this.state.posts.map((post, index) => (
+          {this.state.posts.reverse().map((post, index) => (
             <Post
               key={index}
               username={post.user.username}

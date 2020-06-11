@@ -19,7 +19,7 @@ class NewPost extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(this.state);
+    // console.log(this.state);
     // console.log(localStorage.getItem("token"));
 
     fetch(`https://acebook-backend.herokuapp.com/new`, {
@@ -35,7 +35,7 @@ class NewPost extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       });
   };
 

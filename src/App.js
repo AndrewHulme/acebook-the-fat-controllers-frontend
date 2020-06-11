@@ -16,39 +16,9 @@ class App extends Component {
     showNewPost: localStorage.getItem("token") == null ? false : true,
   };
 
-  loginHandler = () => {
+  changeAppState = (key, value) => {
     this.setState({
-      isLoggedIn: localStorage.getItem("token"),
-    });
-  };
-
-  clearLoginData = () => {
-    this.setState({
-      isLoggedIn: null,
-    });
-  };
-
-  toggleSignUp = (bool) => {
-    this.setState({
-      showSignUp: bool,
-    });
-  };
-
-  toggleNewPost = (bool) => {
-    this.setState({
-      showNewPost: bool,
-    });
-  };
-
-  toggleFeed = (bool) => {
-    this.setState({
-      showFeed: bool,
-    });
-  };
-
-  toggleLogin = (bool) => {
-    this.setState({
-      showLogin: bool,
+      [key]: value,
     });
   };
 
@@ -59,42 +29,16 @@ class App extends Component {
       <div className="homepage">
         <Navbar
           isLoggedIn={this.state.isLoggedIn}
-          toggleSignUp={this.toggleSignUp}
-          toggleLogin={this.toggleLogin}
-          toggleFeed={this.toggleFeed}
-          clearLoginData={this.clearLoginData}
-          toggleNewPost={this.toggleNewPost}
+          changeAppState={this.changeAppState}
         />
 
         {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
 
-        {showFeed && (
-          <Feed
-            toggleLogin={this.toggleLogin}
-            toggleSignUp={this.toggleSignUp}
-            toggleFeed={this.toggleFeed}
-            toggleNewPost={this.toggleNewPost}
-          />
-        )}
+        {showFeed && <Feed changeAppState={this.changeAppState} />}
 
-        {showLogin && (
-          <Login
-            loginNav={this.loginHandler}
-            toggleSignUp={this.toggleSignUp}
-            toggleLogin={this.toggleLogin}
-            toggleFeed={this.toggleFeed}
-            toggleNewPost={this.toggleNewPost}
-          />
-        )}
+        {showLogin && <Login changeAppState={this.changeAppState} />}
 
-        {showSignUp && (
-          <SignUp
-            toggleSignUp={this.toggleSignUp}
-            toggleLogin={this.toggleLogin}
-            toggleFeed={this.toggleFeed}
-            toggleNewPost={this.toggleNewPost}
-          />
-        )}
+        {showSignUp && <SignUp changeAppState={this.changeAppState} />}
       </div>
     );
   }
