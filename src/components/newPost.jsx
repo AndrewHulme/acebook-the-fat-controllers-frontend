@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-
-// curl -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE1OTE2OTk2NDh9.XtSAuv8VH02C96oHc5uqty01Q6Ics6KralcuoKx-hhM"
-// -H "Content-Type: application/json" -H "Accept: application/json" -X POST -d '{"post":{"message":"hello,world!"}}' http://localhost:3000/new
-
-// # example responses:
-// $ {"id":9,"message":"hello,world!","created_at":"2020-06-08T11:43:16.440Z","updated_at":"2020-06-08T11:43:16.440Z"}
-// $ {"error":"Not Authorized"}
-
-// 1. Auth token
-// 2. Message
+import styles from "../css/master.module.css";
 
 class NewPost extends Component {
   state = {};
@@ -43,20 +34,29 @@ class NewPost extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className="our-form">
-        <div className="form-group">
-          <label></label>
-          <input
-            type="text"
-            name="message"
-            value={this.state.value}
-            onChange={this.handleChange}
-            placeholder="What's on your mind?"
-          />
-        </div>
+      <div>
+        <form onSubmit={this.handleSubmit} className="our-form">
+          <div className="form-group">
+            <textarea
+              className="form-control"
+              rows="3"
+              type="text"
+              name="message"
+              placeholder="What's on your mind?"
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
 
-        <input type="submit" value="Post" />
-      </form>
+          <input
+            type="submit"
+            value="Post"
+            className="btn btn-primary"
+            id={styles.button}
+          />
+        </form>
+        <br></br>
+      </div>
     );
   }
 }
