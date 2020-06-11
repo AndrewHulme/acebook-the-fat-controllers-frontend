@@ -31,7 +31,7 @@ class App extends Component {
 
   updateFeed = () => {
     console.log("updateFeed called from App component");
-    this.child.current.whateveryouwant();
+    this.child.current.api();
   };
 
   render() {

@@ -8,27 +8,11 @@ class Feed extends Component {
       error: null,
       isLoaded: false,
       posts: [],
-      updateToggle: true,
     };
   }
 
-  whateveryouwant = () => {
-    console.log("Whateveryouwant called from feed component");
-    this.forceUpdate();
-
-    // this.setState({ updateToggle: !this.state.updateToggle });
-  };
-
-  static getDerivedStateFromProps(props, state) {
-    if (props.refreshFeed !== state.refreshFeed) {
-      return {
-        refreshFeed: props.refreshFeed,
-      };
-    }
-    return null;
-  }
-
-  componentDidMount() {
+  api = () => {
+    console.log("apid called");
     fetch("http://acebook-backend.herokuapp.com/posts")
       .then((res) => res.json())
       .then(
@@ -46,10 +30,24 @@ class Feed extends Component {
           });
         }
       );
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.refreshFeed !== state.refreshFeed) {
+      return {
+        refreshFeed: props.refreshFeed,
+      };
+    }
+    return null;
+  }
+
+  componentDidMount() {
+    this.api();
   }
 
   render() {
-    const { error, isLoaded } = this.state;
+    const { error, isLoaded, posts } = this.state;
+    console.log("patpat" + posts);
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
@@ -57,12 +55,17 @@ class Feed extends Component {
     } else {
       return (
         <div>
-          {this.state.posts.reverse().map((post, index) => (
-            <Post
-              key={index}
-              username={post.user.username}
-              message={post.message}
-            />
+          {posts.reverse().map((post, index) => (
+            // <Post
+            //   key={index}
+            //   username={post.user.username}
+            //   message={post.message}
+            // />
+            // <p>{post.message}</p>
+            <div className="postbox">
+              <div className="info">Username: {post.user.username}</div>
+              <div className="message">Message: {post.message}</div>
+            </div>
           ))}
         </div>
       );
