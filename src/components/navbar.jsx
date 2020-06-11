@@ -57,7 +57,6 @@ class Navbar extends Component {
   clickSignUp = () => {
     this.props.changeAppState("showLogin", false);
     this.props.changeAppState("showFeed", false);
-    this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showSignUp", true);
     this.props.changeAppState("errorMessage", []);
@@ -67,7 +66,6 @@ class Navbar extends Component {
   clickLogin = () => {
     this.props.changeAppState("showSignUp", false);
     this.props.changeAppState("showFeed", false);
-    this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showLogin", true);
     this.props.changeAppState("errorMessage", []);
@@ -76,7 +74,6 @@ class Navbar extends Component {
 
   clickSignout = () => {
     this.props.changeAppState("showSignUp", false);
-    this.props.changeAppState("showFeed", false);
     this.props.changeAppState("showLogin", false);
     this.props.changeAppState("showNewPost", false);
     this.props.changeAppState("showFeed", true);

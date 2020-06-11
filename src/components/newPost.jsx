@@ -19,8 +19,7 @@ class NewPost extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-    // console.log(this.state);
-    // console.log(localStorage.getItem("token"));
+    evt.target.reset();
 
     fetch(`https://acebook-backend.herokuapp.com/new`, {
       method: "POST",
@@ -35,20 +34,24 @@ class NewPost extends Component {
     })
       .then((resp) => resp.json())
       .then((data) => {
-        // console.log(data);
+        this.props.updateFeed();
+        this.props.changeAppState("refreshFeed", true);
       });
+
+    // this.setState({ value: "" });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSubmit} className="our-form">
         <div className="form-group">
-          <label>What's on your mind?</label>
+          <label></label>
           <input
             type="text"
             name="message"
             value={this.state.value}
             onChange={this.handleChange}
+            placeholder="What's on your mind?"
           />
         </div>
 

@@ -9,21 +9,30 @@ import "./App.css";
 import styles from "./css/master.module.css";
 
 class App extends Component {
-  state = {
-    isLoggedIn: localStorage.getItem("token"),
-    showLogin: false,
-    showSignUp: false,
-    showLogin: false,
-    showFeed: true,
-    showNewPost: localStorage.getItem("token") == null ? false : true,
-    showErrors: false,
-    errorMessage: null,
-  };
+  constructor(props) {
+    super(props);
+
+    this.child = React.createRef();
+
+    this.state = {
+      isLoggedIn: localStorage.getItem("token"),
+      showLogin: false,
+      showSignUp: false,
+      showFeed: true,
+      showNewPost: localStorage.getItem("token") == null ? false : true,
+      showErrors: false,
+      errorMessage: null,
+    };
+  }
 
   changeAppState = (key, value) => {
     this.setState({
       [key]: value,
     });
+  };
+
+  updateFeed = () => {
+    this.child.current.api();
   };
 
   render() {
@@ -50,9 +59,17 @@ class App extends Component {
             />
           )}
 
-          {showNewPost && <NewPost isLoggedIn={this.state.isLoggedIn} />}
+        {showNewPost && (
+          <NewPost
+            isLoggedIn={this.state.isLoggedIn}
+            changeAppState={this.changeAppState}
+            updateFeed={this.updateFeed}
+          />
+        )}
 
-          {showFeed && <Feed changeAppState={this.changeAppState} />}
+        {showFeed && (
+          <Feed changeAppState={this.changeAppState} ref={this.child} />
+        )}
 
           {showLogin && <Login changeAppState={this.changeAppState} />}
 
