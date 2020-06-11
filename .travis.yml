@@ -18,3 +18,13 @@ script:
   # - bundle exec rubocop
   # - npm test
 # - npm run lint
+ - npm build
+
+
+deploy:
+ - provider: surge
+ - project: ./build/
+ - domain: acebook.surge.sh
+ - skip_cleanup: true
+ on:
+   - branch: travis-surge
