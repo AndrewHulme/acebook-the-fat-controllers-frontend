@@ -45,12 +45,13 @@ class NewPost extends Component {
     return (
       <form onSubmit={this.handleSubmit} className="our-form">
         <div className="form-group">
-          <label>What's on your mind?</label>
+          <label></label>
           <input
             type="text"
             name="message"
             value={this.state.value}
             onChange={this.handleChange}
+            placeholder="What's on your mind?"
           />
         </div>
 
