@@ -162,9 +162,15 @@ class Feed extends Component {
                 </div>
                 <a className="card-link" href="/#"></a>
                 <p className="card-text">
-                  {post.message.split("\n").map((item, i) => (
-                    <p key={i}>{item}</p>
-                  ))}
+                  {post.message
+                    .split("\n")
+                    .map((item, i) =>
+                      item.length == 0 ? (
+                        <div>&nbsp;</div>
+                      ) : (
+                        <div key={i}>{item}</div>
+                      )
+                    )}
                 </p>
               </div>
               {this.currentUser(post.user.username, post.id)}
