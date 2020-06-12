@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../feed.css";
+import styles from "../css/master.module.css";
 
 class Feed extends Component {
   constructor(props) {
@@ -33,6 +34,36 @@ class Feed extends Component {
           });
         }
       );
+  };
+
+  deleteApi = (postId) => {
+    fetch("http://acebook-backend.herokuapp.com/delete", {
+      method: "PATCH",
+      headers: {
+        Authorization: localStorage.getItem("token"),
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ id: postId }),
+    })
+      .then((res) => res.json())
+      .then((json) => console.log(json));
+  };
+
+  currentUser = (username, postId) => {
+    if (username === localStorage.getItem("username")) {
+      return (
+        <button
+          className="btn btn-primary"
+          id={styles.button}
+          onClick={() => this.deleteApi(postId)}
+        >
+          Delete
+        </button>
+      );
+    } else {
+      return null;
+    }
   };
 
   timeSince(date) {
@@ -71,10 +102,6 @@ class Feed extends Component {
     } else {
       var picture = {};
       var i = 1;
-      //console.log(this.state.posts);
-      // for (user of this.state.posts) {
-      //   console.log(user);
-      // }
       this.state.posts.forEach(
         (element, index) =>
           (picture[element.user.username] =
@@ -94,8 +121,6 @@ class Feed extends Component {
                         className="rounded-circle"
                         width="45"
                         src={picture[post.user.username]}
-                        //src={picture.alicelieutier}
-                        //src="https://picsum.photos/50/50"
                         alt=""
                       ></img>
                     </div>
@@ -116,6 +141,7 @@ class Feed extends Component {
                 <a className="card-link" href="/#"></a>
                 <p className="card-text">{post.message}</p>
               </div>
+              {this.currentUser(post.user.username, post.id)}
             </div>
           ))}
         </div>
