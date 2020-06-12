@@ -25,7 +25,27 @@ https://github.com/cjm106/acebook-the-fat-controllers-backend
 
 ## How to Run Tests
 
-- Run ... in the project directory
+```bash
+$ npm run cypress:open
+```
+
+## How to Deploy
+
+Local:
+```bash
+$ npm run build
+$ serve -s build
+```
+
+[http://localhost:5000](http://localhost:5000)
+
+Remote:
+```bash
+$ npm run build
+$ surge ./build/ acebook.surge.sh
+```
+
+[http://acebook.surge.sh](http://acebook.surge.sh)
 
 ## Learning Processes
 
