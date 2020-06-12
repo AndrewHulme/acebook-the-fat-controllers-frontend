@@ -50,10 +50,11 @@ class NewPost extends Component {
             type="submit"
             value="Post"
             className="btn btn-primary"
-            id={styles.button}
+            id={styles.button3}
           />
         </form>
-        <br></br>
+        <div> &nbsp; </div>
+        <div> &nbsp; </div>
       </div>
     );
   }

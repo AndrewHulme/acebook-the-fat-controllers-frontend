@@ -58,7 +58,7 @@ class Feed extends Component {
         <div>
           <button
             className="btn btn-primary"
-            id={styles.button}
+            id={styles.button2}
             onClick={() => this.deleteApi(postId)}
           >
             Delete
@@ -74,7 +74,7 @@ class Feed extends Component {
   ifEdit = (created_at, updated_at) => {
     console.log(created_at);
     console.log(updated_at);
-    if (created_at != updated_at) {
+    if (created_at !== updated_at) {
       return " - Edited";
     }
   };
@@ -126,7 +126,7 @@ class Feed extends Component {
       this.state.posts.forEach(
         (element, index) =>
           (picture[element.user.username] =
-            "https://picsum.photos/id/" + index + "/50/50")
+            "https://picsum.photos/id/" + index + 10 + "/50/50")
       );
       console.log(picture);
       return (
@@ -157,7 +157,7 @@ class Feed extends Component {
                   {" "}
                   <i className="fa fa-clock-o">
                     {this.timeSince(Date.parse(post.created_at))} ago
-                    {post.created_at != post.updated_at && " - Edited"}
+                    {post.created_at !== post.updated_at && " - Edited"}
                   </i>
                 </div>
                 <a className="card-link" href="/#"></a>
