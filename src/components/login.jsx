@@ -5,7 +5,7 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      username: "",
       password: "",
     };
   }
@@ -23,13 +23,14 @@ class Login extends Component {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        email: this.state.email,
+        username: this.state.username,
         password: this.state.password,
       }),
     })
       .then((resp) => resp.json())
       .then((data) => {
         localStorage.setItem("token", data.auth_token);
+        localStorage.setItem("username", data.username);
         // SAVE USERNAME TO LOCAL STORAGE HERE
 
         if (data.hasOwnProperty("error")) {
@@ -52,11 +53,11 @@ class Login extends Component {
       <div className={styles.form}>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
-            <label>Email:</label>
+            <label>Username:</label>
             <input
               type="text"
               className="form-control"
-              name="email"
+              name="username"
               value={this.state.value}
               onChange={this.handleChange}
             />

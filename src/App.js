@@ -59,17 +59,21 @@ class App extends Component {
             />
           )}
 
-        {showNewPost && (
-          <NewPost
-            isLoggedIn={this.state.isLoggedIn}
-            changeAppState={this.changeAppState}
-            updateFeed={this.updateFeed}
-          />
-        )}
+          {showNewPost && (
+            <NewPost
+              isLoggedIn={this.state.isLoggedIn}
+              changeAppState={this.changeAppState}
+              updateFeed={this.updateFeed}
+            />
+          )}
 
-        {showFeed && (
-          <Feed changeAppState={this.changeAppState} ref={this.child} />
-        )}
+          {showFeed && (
+            <Feed
+              changeAppState={this.changeAppState}
+              ref={this.child}
+              updateFeed={this.updateFeed}
+            />
+          )}
 
           {showLogin && <Login changeAppState={this.changeAppState} />}
 
