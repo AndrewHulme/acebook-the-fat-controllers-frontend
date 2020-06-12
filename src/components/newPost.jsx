@@ -29,7 +29,7 @@ class NewPost extends Component {
         this.props.changeAppState("refreshFeed", true);
       });
 
-    // this.setState({ value: "" });
+    this.setState({});
   };
 
   render() {

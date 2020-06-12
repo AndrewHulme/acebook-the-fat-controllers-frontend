@@ -17,7 +17,6 @@ class Feed extends Component {
   }
 
   api = () => {
-    // console.log("apid called");
     fetch("http://acebook-backend.herokuapp.com/posts")
       .then((res) => res.json())
       .then(
@@ -47,7 +46,9 @@ class Feed extends Component {
       body: JSON.stringify({ id: postId }),
     })
       .then((res) => res.json())
-      .then((json) => console.log(json));
+      .then((json) => {
+        this.api();
+      });
   };
 
   currentUser = (username, postId) => {
