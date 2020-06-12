@@ -106,6 +106,14 @@ class Feed extends Component {
     return Math.floor(seconds) + " seconds";
   }
 
+  insertLineBreaks = (text) => {
+    let newText = "";
+    text.split("\n").map((item, i) => {
+      text += <p key={i}>{item}</p>;
+    });
+    return newText;
+  };
+
   render() {
     const { error, isLoaded } = this.state;
     if (error) {
@@ -153,7 +161,11 @@ class Feed extends Component {
                   </i>
                 </div>
                 <a className="card-link" href="/#"></a>
-                <p className="card-text">{post.message}</p>
+                <p className="card-text">
+                  {post.message.split("\n").map((item, i) => (
+                    <p key={i}>{item}</p>
+                  ))}
+                </p>
               </div>
               {this.currentUser(post.user.username, post.id)}
             </div>
