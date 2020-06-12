@@ -5,15 +5,14 @@ class Edit extends Component {
   state = {
     display: false,
     postId: this.props.postId,
-    message: "",
+    editMessage: "",
   };
 
   changeDisplay = (bool) => {
-    this.setState({ display: bool, message: "" });
+    this.setState({ display: bool, editMessage: "" });
   };
 
   save = () => {
-    this.setState({ display: false, message: "" });
     fetch("http://acebook-backend.herokuapp.com/edit", {
       method: "PATCH",
       headers: {
@@ -23,17 +22,18 @@ class Edit extends Component {
       },
       body: JSON.stringify({
         id: this.state.postId,
-        post: { message: this.state.message },
+        post: { message: this.state.editMessage },
       }),
     })
       .then((res) => res.json())
       .then((json) => {
         this.props.updateFeed();
+        this.setState({ display: false, editMessage: "" });
       });
   };
 
   handleChange = (event) => {
-    this.setState({ message: event.target.value });
+    this.setState({ editMessage: event.target.value });
   };
 
   render() {
@@ -58,7 +58,7 @@ class Edit extends Component {
                 className="form-control"
                 rows="3"
                 type="text"
-                name="message"
+                name="editMessage"
                 placeholder="Edit"
                 value={this.state.value}
                 onChange={this.handleChange}
