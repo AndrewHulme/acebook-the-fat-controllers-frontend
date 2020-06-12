@@ -30,11 +30,6 @@ class Navbar extends Component {
     } else {
       return (
         <ul className="navbar-nav ml-auto">
-          {/* <li className="nav-item" key="My Profile">
-            <a className="nav-link" href="#">
-              My Profile
-            </a>
-          </li> */}
           <li className="nav-item" key="logout">
             <a className="nav-link" href="/#" onClick={this.clickSignout}>
               Sign Out
