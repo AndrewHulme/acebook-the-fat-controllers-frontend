@@ -76,7 +76,7 @@ class Login extends Component {
           <input
             type="submit"
             className="btn btn-primary"
-            id={styles.button}
+            id={styles.button3}
             value="Submit"
           />
         </form>

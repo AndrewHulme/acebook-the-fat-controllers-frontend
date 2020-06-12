@@ -118,7 +118,7 @@ class SignUp extends Component {
           <br></br>
           <input
             type="submit"
-            id={styles.button}
+            id={styles.button3}
             className="btn btn-primary"
             value="Submit"
           />
