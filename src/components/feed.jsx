@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../feed.css";
 import styles from "../css/master.module.css";
+import Edit from "./edit";
 
 class Feed extends Component {
   constructor(props) {
@@ -54,16 +55,27 @@ class Feed extends Component {
   currentUser = (username, postId) => {
     if (username === localStorage.getItem("username")) {
       return (
-        <button
-          className="btn btn-primary"
-          id={styles.button}
-          onClick={() => this.deleteApi(postId)}
-        >
-          Delete
-        </button>
+        <div>
+          <button
+            className="btn btn-primary"
+            id={styles.button}
+            onClick={() => this.deleteApi(postId)}
+          >
+            Delete
+          </button>
+          <Edit postId={postId} updateFeed={this.api} />
+        </div>
       );
     } else {
       return null;
+    }
+  };
+
+  ifEdit = (created_at, updated_at) => {
+    console.log(created_at);
+    console.log(updated_at);
+    if (created_at != updated_at) {
+      return " - Edited";
     }
   };
 
@@ -137,6 +149,7 @@ class Feed extends Component {
                   {" "}
                   <i className="fa fa-clock-o">
                     {this.timeSince(Date.parse(post.created_at))} ago
+                    {post.created_at != post.updated_at && " - Edited"}
                   </i>
                 </div>
                 <a className="card-link" href="/#"></a>
