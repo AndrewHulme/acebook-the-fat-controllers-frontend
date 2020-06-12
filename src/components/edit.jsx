@@ -2,13 +2,18 @@ import React, { Component } from "react";
 import styles from "../css/master.module.css";
 
 class Edit extends Component {
-  state = { display: false };
+  state = {
+    display: false,
+    postId: this.props.postId,
+    message: "",
+  };
 
   changeDisplay = (bool) => {
-    this.setState({ display: bool, postId: this.props.postId, message: "" });
+    this.setState({ display: bool, message: "" });
   };
 
   save = () => {
+    this.setState({ display: false, message: "" });
     fetch("http://acebook-backend.herokuapp.com/edit", {
       method: "PATCH",
       headers: {
@@ -23,7 +28,7 @@ class Edit extends Component {
     })
       .then((res) => res.json())
       .then((json) => {
-        this.api();
+        this.props.updateFeed();
       });
   };
 

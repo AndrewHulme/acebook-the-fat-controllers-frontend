@@ -63,7 +63,7 @@ class Feed extends Component {
           >
             Delete
           </button>
-          <Edit postId={postId} />
+          <Edit postId={postId} updateFeed={this.api} />
         </div>
       );
     } else {
