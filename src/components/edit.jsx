@@ -77,7 +77,7 @@ class Edit extends Component {
               type="submit"
               value="Cancel"
               className="btn btn-primary"
-              id={styles.button}
+              id={styles.button2}
               onClick={() => this.changeDisplay(false)}
             />
           </form>

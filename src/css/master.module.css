@@ -2,6 +2,10 @@
   text-align: center;
 }
 
+.card {
+  width: 100%;
+}
+
 .content {
   max-width: 600px;
   margin: auto;
@@ -11,4 +15,23 @@
 #button {
   background-color: #4267b2 !important;
   border: none;
+  width: 50%;
+  float: left;
+  cursor: pointer;
+}
+
+#button2 {
+  background-color: #8b0000 !important;
+  border: none;
+  width: 50%;
+  float: right;
+  cursor: pointer;
+}
+
+#button3 {
+  background-color: #4267b2 !important;
+  border: none;
+  width: 100%;
+  float: left;
+  cursor: pointer;
 }
