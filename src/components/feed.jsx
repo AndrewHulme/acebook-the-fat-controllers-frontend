@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Post from "./post";
 import "../feed.css";
 
 class Feed extends Component {
@@ -70,18 +69,33 @@ class Feed extends Component {
     } else if (!isLoaded) {
       return <div>Loading...</div>;
     } else {
+      var picture = {};
+      var i = 1;
+      //console.log(this.state.posts);
+      // for (user of this.state.posts) {
+      //   console.log(user);
+      // }
+      this.state.posts.forEach(
+        (element, index) =>
+          (picture[element.user.username] =
+            "https://picsum.photos/id/" + index + "/50/50")
+      );
+      console.log(picture);
       return (
         <div>
+          {console.log(this.state.posts[0].user.username)}
           {this.state.posts.reverse().map((post, index) => (
-            <div className="card gedf-card">
-              <div class="card-header">
+            <div className="card gedf-card" key={index}>
+              <div className="card-header">
                 <div className="d-flex justify-content-between align-items-center">
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="mr-2">
                       <img
                         className="rounded-circle"
                         width="45"
-                        src="https://picsum.photos/50/50"
+                        src={picture[post.user.username]}
+                        //src={picture.alicelieutier}
+                        //src="https://picsum.photos/50/50"
                         alt=""
                       ></img>
                     </div>
@@ -99,7 +113,7 @@ class Feed extends Component {
                     {this.timeSince(Date.parse(post.created_at))} ago
                   </i>
                 </div>
-                <a className="card-link" href="#"></a>
+                <a className="card-link" href="/#"></a>
                 <p className="card-text">{post.message}</p>
               </div>
             </div>
