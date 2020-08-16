@@ -32,6 +32,7 @@ $ npm run cypress:open
 ## How to Deploy
 
 Local:
+
 ```bash
 $ npm run build
 $ serve -s build
@@ -40,6 +41,7 @@ $ serve -s build
 [http://localhost:5000](http://localhost:5000)
 
 Remote:
+
 ```bash
 $ npm run build
 $ surge ./build/ acebook.surge.sh
@@ -51,8 +53,3 @@ $ surge ./build/ acebook.surge.sh
 
 Go to the Github wiki to see our learning processes:
 https://github.com/AndrewHulme/acebook-the-fat-controllers/wiki
-
-## Deployment
-
-This section has moved here:
-https://facebook.github.io/create-react-app/docs/deployment
