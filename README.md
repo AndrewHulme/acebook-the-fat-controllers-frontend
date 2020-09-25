@@ -2,6 +2,8 @@
 
 React frontend for the Fat Controllers Facebook recreation, Acebook, a social media platform for the masses!
 
+Check out our app at [http://acebook.surge.sh](http://acebook.surge.sh)
+
 Original project repo:
 https://github.com/AndrewHulme/acebook-the-fat-controllers
 
